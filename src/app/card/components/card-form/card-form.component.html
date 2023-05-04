@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <div class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>identifiant</mat-label>
+      <input matInput formControlName="id" readonly />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="cardName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="cardType">
+        <mat-option *ngFor="let class of cardTypes" [value]="class">
+          {{class}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="cardDescription" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Utilisateur</mat-label>
+      <input matInput formControlName="utilisateur" />
+    </mat-form-field>
+  </div>
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Annuler</button>
+    <button mat-raised-button type="submit" cdkFocusInitial color="warn" [disabled]="!cardForm.valid || !cardForm.dirty">{{submitBtnName}}</button>
+  </mat-dialog-actions>
+</form>
