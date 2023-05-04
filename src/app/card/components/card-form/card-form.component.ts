@@ -30,6 +30,8 @@ export class CardFormComponent implements OnDestroy {
 
   users: User[] = [];
 
+  imageUrl: string;
+
   cardForm = this.fb.group({
     id: [0, [Validators.required]],
     cardName: ['', [Validators.required]],
@@ -54,6 +56,8 @@ export class CardFormComponent implements OnDestroy {
       .subscribe(users => {
       this.users = users;
     });
+
+    this.imageUrl = this.data.card.cardUrl;
 
   }
   ngOnDestroy(): void {

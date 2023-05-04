@@ -27,6 +27,8 @@ export class UserFormComponent implements OnDestroy {
     'YuGiOh Arc-V', 
     'YuGiOh Zexal'
   ];
+  
+  imageUrl: string;
 
   userForm = this.fb.group({
     id: [0, [Validators.required]],
@@ -43,6 +45,8 @@ export class UserFormComponent implements OnDestroy {
       if(!data.isCreateForm){
         this.setUserForm(data.user);
       }
+      
+    this.imageUrl = this.data.user.userUrl;
 
   }
   ngOnDestroy(): void {

@@ -23,8 +23,13 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Url</mat-label>
-      <input matInput formControlName="userUrl" />
+      <input matInput formControlName="userUrl" [(ngModel)]="imageUrl"/>
     </mat-form-field>
+
+    <div *ngIf="imageUrl">
+      <img [src]="imageUrl" alt="User Image" class="taille-image">
+    </div>
+
   </div>
 
 
