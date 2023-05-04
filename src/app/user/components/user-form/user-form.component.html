@@ -13,12 +13,17 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Classe</mat-label>
+      <mat-label>Origines</mat-label>
       <mat-select formControlName="origine">
         <mat-option *ngFor="let class of Origines" [value]="class">
           {{class}}
         </mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="userUrl" />
     </mat-form-field>
   </div>
 

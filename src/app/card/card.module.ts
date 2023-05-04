@@ -8,7 +8,7 @@ import { CardListComponent } from './pages/card-list/card-list.component';
 import { CardService } from './services/card.service';
 import { CardFormComponent } from './components/card-form/card-form.component';
 import { CardDetailsComponent } from './pages/card-details/card-details.component';
-import { CardCardComponent } from './components/card-card/card-card.component';
+import { UserService } from '../user/services/user.service';
 
 
 @NgModule({
@@ -17,7 +17,6 @@ import { CardCardComponent } from './components/card-card/card-card.component';
     CardListComponent,
     CardFormComponent,
     CardDetailsComponent,
-    CardCardComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +25,7 @@ import { CardCardComponent } from './components/card-card/card-card.component';
   ],
   providers: [
     CardService,
+    UserService
   ]
 })
 export class CardModule { }

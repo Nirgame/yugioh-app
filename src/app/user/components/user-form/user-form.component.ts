@@ -44,23 +44,6 @@ export class UserFormComponent implements OnDestroy {
         this.setUserForm(data.user);
       }
 
-      this.userForm.get('origine')?.valueChanges.subscribe(value => {
-        switch(value){
-          case 'YuGiOh':
-            this.userForm.get('userUrl')?.setValue('url_magie');
-            break;
-          case 'YuGiOh Gx':
-            this.userForm.get('userUrl')?.setValue('url_piege');
-            break;
-          case 'YuGiOh 5ds':
-            this.userForm.get('userUrl')?.setValue('url_monstre');
-            break;
-          default:
-            this.userForm.get('userUrl')?.setValue('url');
-            break;
-        }
-      });
-
   }
   ngOnDestroy(): void {
     this.destroy$.next(true);

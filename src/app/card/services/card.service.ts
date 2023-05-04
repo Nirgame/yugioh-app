@@ -31,4 +31,8 @@ create(card: Card): Observable<string>{
 getById(id: number): Observable<Card>{
   return this.http.get<Card>(environment.iutApiBaseUrl+"/cards/"+id)
 }
+
+getByUser(id: number): Observable<Card[]>{
+  return this.http.get<Card[]>(environment.iutApiBaseUrl+"/cards/user/"+id)
+}
 }

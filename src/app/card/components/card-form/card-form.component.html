@@ -26,10 +26,19 @@
       <input matInput formControlName="cardDescription" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Utilisateur</mat-label>
-      <input matInput formControlName="utilisateur" />
+      <mat-select formControlName="utilisateur">
+        <mat-option *ngFor="let user of users" [value]="user.id">{{ user.name }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="cardForm.get('utilisateur')?.invalid">Veuillez sélectionner un utilisateur.</mat-error>
     </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>card url</mat-label>
+      <input matInput formControlName="cardUrl" />
+    </mat-form-field>
+
   </div>
 
 

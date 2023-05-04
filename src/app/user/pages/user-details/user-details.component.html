@@ -1,2 +1,17 @@
 <button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
-<app-user-card [selectedUser]="user$ | async" (received)="showReceivedValue($event)"></app-user-card>
+<mat-card class="example-card">
+    <img mat-card-image src="{{ (user$ | async)?.userUrl }}" alt="Photo de l'utilisateur">
+    <mat-card-content>
+        <p>Nom: {{ (user$ | async)?.name}}</p>
+        <p>Origine: {{ (user$ | async)?.origine }}</p>
+        <p>Cartes possédées : </p>
+        <div *ngFor="let card of cards$ | async">
+            <p>Nom de la carte : {{ card.cardName }}</p>
+            <ul>
+                <li>Type de la carte : {{ card.cardType }}</li>
+                <li>Description de la carte : {{ card.cardDescription }}</li>
+                <a mat-raised-button color="primary" [routerLink]="['../../cards/', card.id ]">Détails de la carte</a>
+            </ul>
+        </div>
+    </mat-card-content>
+  </mat-card>

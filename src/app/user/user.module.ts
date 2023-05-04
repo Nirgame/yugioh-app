@@ -5,10 +5,10 @@ import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserComponent } from './user.component';
 import { UserService } from './services/user.service';
+import { CardService } from '../card/services/card.service';
 
 
 @NgModule({
@@ -16,7 +16,6 @@ import { UserService } from './services/user.service';
     UserComponent,
     UserListComponent,
     UserDetailsComponent,
-    UserCardComponent,
     UserFormComponent
   ],
   imports: [
@@ -26,6 +25,7 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     UserService,
+    CardService
   ],
 })
 export class UserModule { }

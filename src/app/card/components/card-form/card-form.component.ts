@@ -5,6 +5,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from 'src/app/user/models/user';
+import { UserService } from 'src/app/user/services/user.service';
 
 export interface CardFormData {
   isCreateForm: boolean;
@@ -26,40 +28,32 @@ export class CardFormComponent implements OnDestroy {
     'Monstre'
   ];
 
+  users: User[] = [];
+
   cardForm = this.fb.group({
     id: [0, [Validators.required]],
     cardName: ['', [Validators.required]],
     cardType: ['', [Validators.required]],
     cardDescription: ['', [Validators.required]],
-    utilisateur: [0, [Validators.required]],
+    utilisateur: [{id: 0, name: '', origine: '', userUrl: ''}, [Validators.required]],
     cardUrl: ['', [Validators.required]]
   });
 
   constructor(public dialogRef: MatDialogRef<CardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CardFormData, private fb: FormBuilder, 
     private cardService : CardService, 
+    private userService : UserService,
     private _snackBar: MatSnackBar) {
 
       if(!data.isCreateForm){
         this.setCardForm(data.card);
       }
 
-      this.cardForm.get('cardType')?.valueChanges.subscribe(value => {
-        switch(value){
-          case 'Magie':
-            this.cardForm.get('cardUrl')?.setValue('url_magie');
-            break;
-          case 'Piège':
-            this.cardForm.get('cardUrl')?.setValue('url_piege');
-            break;
-          case 'Monstre':
-            this.cardForm.get('cardUrl')?.setValue('url_monstre');
-            break;
-          default:
-            this.cardForm.get('cardUrl')?.setValue('');
-            break;
-        }
-      });
+      this.userService.get()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(users => {
+      this.users = users;
+    });
 
   }
   ngOnDestroy(): void {

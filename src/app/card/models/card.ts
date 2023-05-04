@@ -1,8 +1,10 @@
+import { User } from "src/app/user/models/user";
+
 export interface Card{
     id: number;
     cardName:string;
     cardType:string;
     cardDescription:string;
-    utilisateur:number;
+    utilisateur:User;
     cardUrl:string;
  }

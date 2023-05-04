@@ -1,2 +1,18 @@
 <button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
-<app-card-card [selectedCard]="card$ | async" (received)="showReceivedValue($event)"></app-card-card>
+
+<mat-card style="max-width: 600px;margin: auto;">
+    <div class="middle">
+        <img mat-card-image class="image-size" src="{{ (card$ | async)?.cardUrl }}" alt="Photo de la carte">
+    </div>
+    <mat-card-content>
+        <p>Nom: {{ (card$ | async)?.cardName }}</p>
+        <p>Type: {{ (card$ | async)?.cardType }}</p>
+        <p>Description: {{ (card$ | async)?.cardDescription }}</p>
+        <p>Utilisateur : {{ (card$ | async)?.utilisateur.name }}</p>
+        <p>Origine : {{ (card$ | async)?.utilisateur.origine}}</p>
+        <a mat-raised-button color="primary" [routerLink]="['../../users/', (card$ | async)?.utilisateur.id ]">Détails de l'utilisateur</a>
+    </mat-card-content>
+    <div class="middle">
+        <img mat-card-image class="image-size" src="{{ (card$ | async)?.utilisateur.userUrl }}" alt="Photo de l'utilisateur">
+    </div>
+  </mat-card>
